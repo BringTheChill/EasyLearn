@@ -1,0 +1,25 @@
+{% load menu_tags %}
+
+{% for child in children %}
+    {% if child.children %}
+        <li class="dropdown {% if child.selected or child.ancestor %} active{% endif %}">
+            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">{{ child.get_menu_title }}</a>
+            <ul class="dropdown-menu" id="nav-submenu-{{ child.id }}">
+                {% show_menu from_level to_level extra_inactive extra_active "main/top_menu.html" "" "" child %}
+            </ul>
+        </li>
+    {% else %}
+        <li class="nav-item g-mx-10--lg {% if child.selected %} active{% endif %}">
+            {% if child.attr.reverse_id == 'acasa' %}
+                <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}" class="nav-link px-0 "><i
+                        class="fa fa-home fa-lg"></i></a>
+            {% elif child.attr.reverse_id == 'faq' %}
+                <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}" class="nav-link px-0 "><i
+                        class="fa fa-question fa-lg"></i></a>
+            {% else %}
+                <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}"
+                   class="nav-link px-0 ">{{ child.get_menu_title }}</a>
+            {% endif %}
+        </li>
+    {% endif %}
+{% endfor %}

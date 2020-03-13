@@ -9,7 +9,8 @@ urlpatterns = [
     path('filer/', include('filer.urls')),
     path('admin/', admin.site.urls),
     path('courses/', include('courses.urls')),
-    path('', index)
+    path('', include('cms.urls')),
+
 ]
 
 if settings.DEBUG:

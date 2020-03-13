@@ -12,6 +12,56 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = join(INSTALL_DIR, 'www', 'media')
 MEDIA_URL = '/media/'
 
+CMS_TEMPLATES = (
+    ('index.html', 'Homepage'),
+    # ('page-right-sidebar.html', 'Right sidebar'),
+    # ('contact.html', 'Contact'),
+    # ('services.html', 'Servicii'),
+)
+
+CKEDITOR_SETTINGS = {
+    'language': 'en',
+    'toolbar': 'CMS',
+    'toolbar_CMS': [
+        ['Undo', 'Redo'],
+        ['cmsplugins', '-', 'ShowBlocks'],
+        ['Format', 'Styles'],
+        ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
+        ['Link', 'Unlink'],
+        ['Maximize', ''],
+        '/',
+        ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+        ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+        ['HorizontalRule'],
+        ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
+        ['Source']
+    ],
+    'toolbar_HTMLField': [
+        ['Undo', 'Redo'],
+        ['cmsplugins', '-', 'ShowBlocks'],
+        ['Format', 'Styles'],
+        ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
+        ['Link', 'Unlink'],
+        ['Maximize', ''],
+        '/',
+        ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+        ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+        ['HorizontalRule'],
+        ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
+        ['Source']
+    ],
+    'skin': 'moono-lisa',
+    'toolbarCanCollapse': False,
+    'entities': False,
+    'entities_latin': False,
+}
+
+SITE_ID = 1
+
+LANGUAGES = [
+    ('en-us', 'English'),
+]
+
 STATICFILES_DIRS = (
     normpath(join(BASE_DIR, 'static')),
 )
@@ -23,17 +73,32 @@ STATICFILES_FINDERS = (
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = ['localhost']
 
 INSTALLED_APPS = [
+    'djangocms_admin_style',
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djangocms_text_ckeditor',
+    'djangocms_blog',
+    'djangocms_link',
+    'djangocms_file',
+    'djangocms_picture',
+    'djangocms_video',
+    'djangocms_style',
+    'taggit',
+    'taggit_autosuggest',
+    'cms',
+    'menus',
+    'treebeard',
+    'sekizai',
     'easy_thumbnails',
     'filer',
     'mptt',
@@ -41,6 +106,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'cms.middleware.utils.ApphookReloadMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,6 +114,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
 ]
 
 ROOT_URLCONF = 'main.urls'
@@ -71,6 +142,8 @@ TEMPLATES = [
                 'django.template.context_processors.csrf',
                 'django.template.context_processors.request',
                 "django.contrib.messages.context_processors.messages",
+                'sekizai.context_processors.sekizai',
+                'cms.context_processors.cms_settings',
             ],
         },
     },
@@ -81,13 +154,6 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(),
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {

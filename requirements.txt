@@ -4,19 +4,45 @@
 #
 #    pip-compile requirements.in
 #
-asgiref==3.2.5            # via django
+aldryn-apphooks-config==0.5.3  # via djangocms-blog
 dj-database-url==0.5.0    # via -r requirements.in
+django-appdata==0.2.2     # via aldryn-apphooks-config
+django-classy-tags==1.0.0  # via django-cms, django-sekizai
+django-cms==3.7.1         # via -r requirements.in, aldryn-apphooks-config, djangocms-apphook-setup, djangocms-attributes-field, djangocms-blog, djangocms-file, djangocms-link, djangocms-picture, djangocms-style, djangocms-text-ckeditor, djangocms-video
 django-debug-toolbar==2.2  # via -r requirements.in
-django-filer==1.7.0       # via -r requirements.in
+django-filer==1.7.0       # via -r requirements.in, djangocms-blog, djangocms-file, djangocms-link, djangocms-picture, djangocms-video
+django-formtools==2.2     # via django-cms
 django-js-asset==1.2.2    # via django-mptt
+django-meta==1.6.1        # via djangocms-blog
 django-mptt==0.11.0       # via django-filer
+django-parler==2.0.1      # via djangocms-blog
 django-polymorphic==2.1.2  # via django-filer
-django==3.0.4             # via -r requirements.in, django-debug-toolbar, django-filer, django-mptt, django-polymorphic, easy-thumbnails
-easy-thumbnails==2.7      # via django-filer
+django-sekizai==1.1.0     # via django-cms
+django-sortedm2m==3.0.0   # via djangocms-blog
+django-taggit-autosuggest==0.3.8  # via djangocms-blog
+django-taggit-templatetags==0.2.5  # via djangocms-blog
+django-taggit==1.1.0      # via django-taggit-autosuggest, django-taggit-templatetags, djangocms-blog
+django-templatetag-sugar==1.0  # via django-taggit-templatetags
+django-treebeard==4.3.1   # via django-cms
+django==2.2.11            # via -r requirements.in, django-classy-tags, django-cms, django-debug-toolbar, django-filer, django-formtools, django-mptt, django-polymorphic, django-sekizai, django-taggit, django-taggit-templatetags, django-treebeard, easy-thumbnails
+djangocms-admin-style==1.5.0  # via django-cms
+djangocms-apphook-setup==0.4.1  # via djangocms-blog
+djangocms-attributes-field==1.2.0  # via djangocms-file, djangocms-link, djangocms-picture, djangocms-style, djangocms-video
+djangocms-blog==1.0.0     # via -r requirements.in
+djangocms-file==2.4.0     # via -r requirements.in
+djangocms-link==2.5.0     # via -r requirements.in
+djangocms-picture==2.4.0  # via -r requirements.in
+djangocms-style==2.3.0    # via -r requirements.in
+djangocms-text-ckeditor==3.9.0  # via -r requirements.in, djangocms-blog
+djangocms-video==2.3.0    # via -r requirements.in
+easy-thumbnails==2.6      # via django-filer, djangocms-blog, djangocms-picture
+html5lib==1.0.1           # via djangocms-text-ckeditor
+lxml==4.5.0               # via djangocms-blog
 mysqlclient==1.4.6        # via -r requirements.in
-pillow==7.0.0             # via easy-thumbnails
+pillow==7.0.0             # via djangocms-text-ckeditor, easy-thumbnails
 python-dotenv==0.12.0     # via -r requirements.in
-pytz==2019.3              # via django
-six==1.14.0               # via django-filer
+pytz==2019.3              # via django, djangocms-blog
+six==1.14.0               # via django-classy-tags, django-filer, django-meta, django-parler, django-sekizai, html5lib
 sqlparse==0.3.1           # via django, django-debug-toolbar
 unidecode==1.1.1          # via django-filer
+webencodings==0.5.1       # via html5lib

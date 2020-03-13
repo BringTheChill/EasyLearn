@@ -7,3 +7,13 @@ Django
 dj-database-url
 django-debug-toolbar
 django-filer
+
+#CMS
+django-cms
+djangocms-blog
+djangocms-text-ckeditor
+djangocms-link
+djangocms-file
+djangocms-picture
+djangocms-video
+djangocms-style
