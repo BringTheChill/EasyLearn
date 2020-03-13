@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+{% load static thumbnail %}
+{% block main_content %}
+    <!-- ================ start banner Area ================= -->
+    <section class="banner-area">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12 banner-right">
+                    <h1 class="text-white">
+                        Courses
+                    </h1>
+                    <p class="mx-auto text-white  mt-20 mb-40">
+                        Your place to learn some stuff! <br>
+                    </p>
+                    <div class="link-nav">
+              <span class="box">
+                <a href="/">Home </a>
+                <i class="lnr lnr-arrow-right"></i>
+                <a href="/courses">Courses</a>
+              </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center container-fluid">
+                <div class="col-lg-12">
+                    <h2>
+                        Check what Courses <br/>
+                        are Available Right Now
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ End banner Area ================= -->
+
+    <!-- ================ Start Popular Course Area ================= -->
+    <section class="popular-course-area">
+        <div class="container-fluid">
+            <div class="owl-carousel popuar-course-carusel">
+                {% for course in courses %}
+                    <div class="single-popular-course">
+                        <div class="thumb">
+                            {% thumbnail course.image 324x182 crop upscale as thumb %}
+                            <img class="f-img img-fluid mx-auto" src="{{ thumb.url }}" alt=""/>
+                        </div>
+                        <div class="details matchHeight">
+                            <div class="d-flex justify-content-between mb-20">
+                                <p class="name">{{ course.category }}</p>
+                                <p class="value">
+                                    {% if course.price == 0.00 %}
+                                        Gratuit
+                                    {% elif course.price == 1 %}
+                                        {{ course.price }} Leu
+                                    {% else %}
+                                        {{ course.price }} Lei
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <a href="#">
+                                <h4>{{ course }}</h4>
+                            </a>
+                            <div class="bottom d-flex mt-15">
+                                <ul class="list">
+                                    <li>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                    </li>
+                                </ul>
+                                <p class="ml-20">25 Reviews</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- ================ End Popular Course Area ================= -->
+
+{% endblock %}

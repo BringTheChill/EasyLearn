@@ -1,0 +1,9 @@
+#General
+python-dotenv
+mysqlclient
+
+#Django apps
+Django
+dj-database-url
+django-debug-toolbar
+django-filer
