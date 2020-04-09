@@ -1,19 +1,21 @@
 #General
 python-dotenv
 mysqlclient
+Pillow
 
 #Django apps
 Django
 dj-database-url
 django-debug-toolbar
 django-filer
+django-crispy-forms
 
 #CMS
-django-cms
-djangocms-blog
-djangocms-text-ckeditor
-djangocms-link
-djangocms-file
-djangocms-picture
-djangocms-video
-djangocms-style
+#django-cms
+#djangocms-blog
+#djangocms-text-ckeditor
+#djangocms-link
+#djangocms-file
+#djangocms-picture
+#djangocms-video
+#djangocms-style

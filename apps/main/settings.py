@@ -78,7 +78,7 @@ DEBUG = os.environ.get('DEBUG')
 ALLOWED_HOSTS = ['localhost']
 
 INSTALLED_APPS = [
-    'djangocms_admin_style',
+    # 'djangocms_admin_style',
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -86,27 +86,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djangocms_text_ckeditor',
-    'djangocms_blog',
-    'djangocms_link',
-    'djangocms_file',
-    'djangocms_picture',
-    'djangocms_video',
-    'djangocms_style',
-    'taggit',
-    'taggit_autosuggest',
-    'cms',
-    'menus',
-    'treebeard',
-    'sekizai',
+    'students',
+    # 'djangocms_text_ckeditor',
+    # 'djangocms_blog',
+    # 'djangocms_link',
+    # 'djangocms_file',
+    # 'djangocms_picture',
+    # 'djangocms_video',
+    # 'djangocms_style',
+    # 'taggit',
+    # 'taggit_autosuggest',
+    # 'cms',
+    # 'menus',
+    # 'treebeard',
+    # 'sekizai',
     'easy_thumbnails',
     'filer',
     'mptt',
+    'crispy_forms',
     'courses',
 ]
 
+AUTH_USER_MODEL = 'students.User'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 MIDDLEWARE = [
-    'cms.middleware.utils.ApphookReloadMiddleware',
+    # 'cms.middleware.utils.ApphookReloadMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -115,10 +121,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'cms.middleware.user.CurrentUserMiddleware',
-    'cms.middleware.page.CurrentPageMiddleware',
-    'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware',
+    # 'cms.middleware.user.CurrentUserMiddleware',
+    # 'cms.middleware.page.CurrentPageMiddleware',
+    # 'cms.middleware.toolbar.ToolbarMiddleware',
+    # 'cms.middleware.language.LanguageCookieMiddleware',
 ]
 
 ROOT_URLCONF = 'main.urls'
@@ -142,8 +148,8 @@ TEMPLATES = [
                 'django.template.context_processors.csrf',
                 'django.template.context_processors.request',
                 "django.contrib.messages.context_processors.messages",
-                'sekizai.context_processors.sekizai',
-                'cms.context_processors.cms_settings',
+                # 'sekizai.context_processors.sekizai',
+                # 'cms.context_processors.cms_settings',
             ],
         },
     },

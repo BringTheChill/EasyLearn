@@ -14,9 +14,12 @@ def course_add(request):
         form = CourseForm(request.POST)
         if form.is_valid():
             new_course = form.save()
-            return HttpResponseRedirect('/courses/')
+            return HttpResponseRedirect(new_course.get_absolute_url())
     else:
         form = CourseForm()
-    return render(request, 'course_form.html', {
-        'form': form,
-    })
+    return render(request, 'course_form.html', {'form': form})
+
+
+def course_detail(request, course_id):
+    course = Course.objects.get(id=course_id)
+    return render(request, 'course_detail.html', {'course': course})

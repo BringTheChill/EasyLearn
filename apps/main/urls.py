@@ -1,15 +1,15 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-
-from . import settings
-from .views import index
+from courses.views import course_detail, course_add
+from . import settings, views
 
 urlpatterns = [
     path('filer/', include('filer.urls')),
     path('admin/', admin.site.urls),
     path('courses/', include('courses.urls')),
-    path('', include('cms.urls')),
+    # path('', include('cms.urls')),
+    path('', views.index, name='index'),
 
 ]
 
