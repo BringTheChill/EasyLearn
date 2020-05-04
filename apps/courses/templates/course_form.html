@@ -1,16 +1,40 @@
-{% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Adauga curs</title>
-</head>
-<body>
-{# TODO: Sa pun template-ul default si sa rezolv cu form-ul pe imagine #}
-<form method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" value="Apasa">
-</form>
-</body>
-</html>
+{% extends 'index.html' %}
+{% load static thumbnail crispy_forms_tags %}
+{% block main_content %}
+    <!-- ================ start banner Area ================= -->
+    <section class="banner-area">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12 banner-right">
+                    <h1 class="text-white">
+                        Courses
+                    </h1>
+                    <p class="mx-auto text-white  mt-20 mb-40">
+                        Register your course right now! <br>
+                    </p>
+                    <div class="link-nav">
+              <span class="box">
+                <a href="/">Home </a>
+                <i class="lnr lnr-arrow-right"></i>
+                <a href="/courses">Courses</a>
+              </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ================ End banner Area ================= -->
+    <div style="margin-left: 8px;margin-right: 8px;">
+        <form action="." method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            <center>
+                <div class="col-3">
+                    {% crispy form form.helper %}
+                    <input type="submit" class="btn btn-outline-primary" value="Register your course">
+                </div>
+            </center>
+        </form>
+    </div>
+{% endblock main_content %}

@@ -28,6 +28,9 @@
                         are Available Right Now
                     </h2>
                 </div>
+                <a href="{% url 'course_add' %}">
+                    <button class="btn btn-outline-primary">Adauga curs</button>
+                </a>
             </div>
         </div>
     </section>
@@ -40,8 +43,10 @@
                 {% for course in courses %}
                     <div class="single-popular-course">
                         <div class="thumb">
-                            {% thumbnail course.image 324x182 crop upscale as thumb %}
-                            <img class="f-img img-fluid mx-auto" src="{{ thumb.url }}" alt=""/>
+                            {% thumbnail course.file 324x182 crop upscale as thumb %}
+                            <a href="course_detail/{{ course.id }}">
+                                <img class="f-img img-fluid mx-auto" src="{{ thumb.url }}" alt=""/>
+                            </a>
                         </div>
                         <div class="details matchHeight">
                             <div class="d-flex justify-content-between mb-20">
@@ -56,7 +61,7 @@
                                     {% endif %}
                                 </p>
                             </div>
-                            <a href="#">
+                            <a href="course_detail/{{ course.id }}">
                                 <h4>{{ course }}</h4>
                             </a>
                             <div class="bottom d-flex mt-15">

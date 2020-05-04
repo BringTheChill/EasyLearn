@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="{% static 'css/hexagons.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css"/>
+    <link rel="stylesheet" href="{% static 'css/basic.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/dropzone.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
 {#    {% render_block "css" %}#}
@@ -777,9 +779,11 @@
 <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/jquery.matchHeight.js' %}"></script>
+<script src="{% static 'js/dropzone.js' %}"></script>
 <script>
     $(document).on('ready', function () {
         $('.matchHeight').matchHeight();
+            {#var myDropzone = new Dropzone("div#myId", { url: "."});#}
     });
 </script>
 {#{% render_block "js" %}#}

@@ -16,3 +16,19 @@
     width: 100%;
     z-index: 1;
 }
+.footer-area {
+    padding: 339px 0px 120px;
+    background: url(../img/footer-bg.png) no-repeat;
+    background-size: cover;
+}
+
+.video-area {
+    background: url(../img/video-area-bg.png) no-repeat;
+    background-size: cover;
+}
+
+.registration-area {
+    background: url(../img/registration-bg.png) no-repeat;
+    padding: 157px 0px;
+    background-size: cover;
+}

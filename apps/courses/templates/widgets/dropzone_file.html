@@ -1,0 +1,14 @@
+<div id="myId" class="">
+            {% csrf_token %}
+
+<div class="dz-message needsclick ">
+
+    <button type="button" class="dz-button">Drop files here or click to upload.</button><br>
+    <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+</div>
+<div class="fallback">
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %}
+       value="{{ widget.value|stringformat:'s' }}"{% endif %}{% include "django/forms/widgets/attrs.html" %}>
+</div>
+</div>
+

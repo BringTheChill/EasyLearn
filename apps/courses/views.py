@@ -5,13 +5,13 @@ from .forms import CourseForm
 
 
 def index(request):
-    courses = Course.objects.all
+    courses = Course.objects.prefetch_related('students')
     return render(request, "courses.html", {'courses': courses})
 
 
 def course_add(request):
     if request.POST:
-        form = CourseForm(request.POST)
+        form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
             new_course = form.save()
             return HttpResponseRedirect(new_course.get_absolute_url())

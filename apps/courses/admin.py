@@ -6,5 +6,9 @@ class CourseAdmin(admin.ModelAdmin):
     pass
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Course, CourseAdmin)
-admin.site.register(Category, CourseAdmin)
+admin.site.register(Category, CategoryAdmin)
