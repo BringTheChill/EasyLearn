@@ -78,43 +78,12 @@
                         <h4 class="title">Course Outline</h4>
                         <div class="content">
                             <ul class="course-list">
+                                {% for section in course.section_set.all %}
                                 <li class="justify-content-between d-flex">
-                                    <p>Introduction Lesson</p>
-                                    <a class="btn text-uppercase" href="#">View Details</a>
+                                    <p>{{ section.title }}</p>
+                                    <a class="btn text-uppercase" href="{{ section.get_absolute_url }}">View Details</a>
                                 </li>
-                                <li class="justify-content-between d-flex">
-                                    <p>Basics of HTML</p>
-                                    <a class="btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <p>Getting Know about HTML</p>
-                                    <a class="btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <p>Tags and Attributes</p>
-                                    <a class="btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <p>Basics of CSS</p>
-                                    <a class="btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <p>Getting Familiar with CSS</p>
-                                    <a class="btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <p>Introduction to Bootstrap</p>
-                                    <a class="btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <p>Responsive Design</p>
-                                    <a class="btn text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between d-flex">
-                                    <p>Canvas in HTML 5</p>
-                                    <a class="btn text-uppercase" href="#">View Details</a>
-                                </li>
-
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>

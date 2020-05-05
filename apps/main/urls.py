@@ -8,10 +8,11 @@ from students.views import student_detail
 urlpatterns = [
     path('filer/', include('filer.urls')),
     path('admin/', admin.site.urls),
-    path('courses/', include('courses.urls')),
-    path('student_detail/<student_id>', student_detail, name="student_detail"),
-    # path('', include('cms.urls')),
     path('', views.index, name='index'),
+    path('', include('django.contrib.auth.urls')),
+    path('courses/', include('courses.urls')),
+    path('student_detail/', student_detail, name="student_detail"),
+    # path('', include('cms.urls')),
 
 ]
 

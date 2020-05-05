@@ -1,8 +1,14 @@
 from django import forms
-from .models import Course
+from .models import Course, Section
 from .widgets import DropzoneFileInput
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div
+
+
+class VideoForm(forms.ModelForm):
+    class Meta:
+        model = Section
+        fields = ["video"]
 
 
 class CourseForm(forms.ModelForm):

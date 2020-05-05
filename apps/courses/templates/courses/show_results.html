@@ -7,7 +7,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        Student detail
+                        Show results
                     </h1>
                     <p class="mx-auto text-white  mt-20 mb-40">
                     </p>
@@ -18,16 +18,12 @@
     <!-- ================ End banner Area ================= -->
     <section class="sample-text-area">
         <div class="container">
-            <p>{{ student }}</p>
+            <h1>Your results</h1>
+            <p>You scored {{ score }}</p>
             <ul>
-                {% for course, entries in scores %}
-                    <li>{{ course }}</li>
-                    <ul style="margin-left: 20px;">
-                        {% for section, score in entries %}
-                            <li>{{ section }}: {{ score }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endfor %}
+                <li><a href="{{ section.get_next_section_url }}" class="genric-btn success radius">Next section</a></li>
+                <br>
+                <li><a href="{{ section.get_test_url }}" class="genric-btn success radius">Try again</a></li>
             </ul>
         </div>
     </section>

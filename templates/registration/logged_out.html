@@ -7,7 +7,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        Student detail
+                        Register
                     </h1>
                     <p class="mx-auto text-white  mt-20 mb-40">
                     </p>
@@ -18,17 +18,8 @@
     <!-- ================ End banner Area ================= -->
     <section class="sample-text-area">
         <div class="container">
-            <p>{{ student }}</p>
-            <ul>
-                {% for course, entries in scores %}
-                    <li>{{ course }}</li>
-                    <ul style="margin-left: 20px;">
-                        {% for section, score in entries %}
-                            <li>{{ section }}: {{ score }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endfor %}
-            </ul>
+            <h1>Logout</h1>
+            <p>You have been logged out.</p>
         </div>
     </section>
 {% endblock %}

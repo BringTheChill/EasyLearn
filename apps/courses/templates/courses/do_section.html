@@ -7,7 +7,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        Student detail
+                        {{ section.number }}.{{ section.title }}
                     </h1>
                     <p class="mx-auto text-white  mt-20 mb-40">
                     </p>
@@ -18,17 +18,10 @@
     <!-- ================ End banner Area ================= -->
     <section class="sample-text-area">
         <div class="container">
-            <p>{{ student }}</p>
-            <ul>
-                {% for course, entries in scores %}
-                    <li>{{ course }}</li>
-                    <ul style="margin-left: 20px;">
-                        {% for section, score in entries %}
-                            <li>{{ section }}: {{ score }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endfor %}
-            </ul>
+            <video width="1000" controls>
+                <source src="{{ section.video.url }}" type="video/mp4">
+            </video>
+            <a href="{{ section.get_test_url }}" class="genric-btn info circle arrow">Take the test<span class="lnr lnr-arrow-right"></span></a>
         </div>
     </section>
 {% endblock %}

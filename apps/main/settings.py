@@ -12,6 +12,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = join(INSTALL_DIR, 'www', 'media')
 MEDIA_URL = '/media/'
 
+LOGIN_REDIRECT_URL = '/'
+
 CMS_TEMPLATES = (
     ('index.html', 'Homepage'),
     # ('page-right-sidebar.html', 'Right sidebar'),

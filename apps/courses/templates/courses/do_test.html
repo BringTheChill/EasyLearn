@@ -7,7 +7,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        Student detail
+                        Do Test
                     </h1>
                     <p class="mx-auto text-white  mt-20 mb-40">
                     </p>
@@ -18,17 +18,24 @@
     <!-- ================ End banner Area ================= -->
     <section class="sample-text-area">
         <div class="container">
-            <p>{{ student }}</p>
-            <ul>
-                {% for course, entries in scores %}
-                    <li>{{ course }}</li>
-                    <ul style="margin-left: 20px;">
-                        {% for section, score in entries %}
-                            <li>{{ section }}: {{ score }}</li>
+            <p>Test for "{{ section.number }}.{{ section.title }}"</p>
+            <hr/>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% for question in section.question_set.all %}
+                    <p><strong>{{ question.text }}</strong></p>
+                    <ul>
+                        {% for answer in question.answer_set.all %}
+                            <li>
+                                    <input type="radio" name="question-{{ question.id }}" value="{{ answer.id }}">
+                                    {{ answer }}
+                            </li>
                         {% endfor %}
                     </ul>
                 {% endfor %}
-            </ul>
+            <hr/>
+                <input type="submit" class="genric-btn success radius" value="Submit">
+            </form>
         </div>
     </section>
 {% endblock %}
