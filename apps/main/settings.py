@@ -88,6 +88,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'students',
     # 'djangocms_text_ckeditor',
     # 'djangocms_blog',

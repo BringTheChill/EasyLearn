@@ -8,16 +8,17 @@ asgiref==3.2.7            # via django
 dj-database-url==0.5.0    # via -r requirements.in
 django-crispy-forms==1.9.0  # via -r requirements.in
 django-debug-toolbar==2.2  # via -r requirements.in
-django-filer==1.7.0       # via -r requirements.in
+django-filer==1.7.1       # via -r requirements.in
 django-js-asset==1.2.2    # via django-mptt
 django-mptt==0.11.0       # via django-filer
 django-polymorphic==2.1.2  # via django-filer
-django==3.0.5             # via -r requirements.in, django-debug-toolbar, django-filer, django-mptt, django-polymorphic, easy-thumbnails
+django==3.0.6             # via -r requirements.in, django-debug-toolbar, django-filer, django-mptt, django-polymorphic, djangorestframework, easy-thumbnails
+djangorestframework==3.11.0  # via -r requirements.in
 easy-thumbnails==2.7      # via django-filer
 mysqlclient==1.4.6        # via -r requirements.in
-pillow==7.1.1             # via -r requirements.in, easy-thumbnails
-python-dotenv==0.12.0     # via -r requirements.in
-pytz==2019.3              # via django
+pillow==7.1.2             # via -r requirements.in, easy-thumbnails
+python-dotenv==0.13.0     # via -r requirements.in
+pytz==2020.1              # via django
 six==1.14.0               # via django-filer
 sqlparse==0.3.1           # via django, django-debug-toolbar
 unidecode==1.1.1          # via django-filer

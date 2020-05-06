@@ -1,15 +1,21 @@
 from django.core.exceptions import PermissionDenied, SuspiciousOperation
+from django.urls import reverse
 from django.db import transaction
+from django.views.generic import DetailView, CreateView, ListView
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse
+
 from .models import Course, Section, UserAnswer, Question
 from .forms import CourseForm
 
 
-def index(request):
-    courses = Course.objects.prefetch_related('students')
-    return render(request, "courses.html", {'courses': courses})
+class CourseListView(ListView):
+    model = Course
+    queryset = Course.objects.prefetch_related('students')
+
+
+course_list = CourseListView.as_view()
 
 
 def course_add(request):
@@ -20,12 +26,22 @@ def course_add(request):
             return HttpResponseRedirect(new_course.get_absolute_url())
     else:
         form = CourseForm()
-    return render(request, 'course_form.html', {'form': form})
+    return render(request, 'courses/course_form.html', {'form': form})
+
+#
+# class CourseAddView(CreateView):
+#     model = Course
+#     fields = '__all__'
+#
+#
+# course_add = CourseAddView.as_view()
 
 
-def course_detail(request, course_id):
-    course = Course.objects.get(id=course_id)
-    return render(request, 'course_detail.html', {'course': course})
+class CourseDetailView(DetailView):
+    model = Course
+
+
+course_detail = CourseDetailView.as_view()
 
 
 def do_section(request, section_id):
@@ -45,22 +61,28 @@ def do_test(request, section_id):
         raise PermissionDenied
     section = Section.objects.get(id=section_id)
     if request.method == 'POST':
-        # in caz de ceva e gresit mai jos nu salveaza
-        with transaction.atomic():
-            # stergem toate raspunsurile anterioare in caz de se da testul din nou
-            UserAnswer.objects.filter(user=request.user, question__section=section).delete()
-            for key, value in request.POST.items():
-                if key == 'csrfmiddlewaretoken':
-                    continue
-                # {'question-1': '2'}
-                question_id = key.split('-')[1]
-                question = Question.objects.get(id=question_id)
-                answer_id = int(request.POST.get(key))
-                if answer_id not in question.answer_set.values_list('id', flat=True):
-                    raise SuspiciousOperation('Answer is not valid for this question')
-                user_answer = UserAnswer.objects.create(user=request.user, question=question, answer_id=answer_id, )
+        data = {}
+        for key, value in request.POST.items():
+            if key == 'csrfmiddlewaretoken':
+                continue
+            # {'question-1': '2'}
+            question_id = key.split('-')[1]
+            answer_id = request.POST.get(key)
+            data[question_id] = answer_id
+        perform_test(request.user, data, section)
         return redirect(reverse('show_results', args=(section_id,)))
     return render(request, 'courses/do_test.html', {'section': section})
+
+
+def perform_test(user, data, section):
+    with transaction.atomic():
+        UserAnswer.objects.filter(user=user, question__section=section).delete()
+        for question_id, answer_id in data.items():
+            question = Question.objects.get(id=question_id)
+            answer_id = int(answer_id)
+            if answer_id not in question.answer_set.values_list('id', flat=True):
+                raise SuspiciousOperation('Answer is not valid for this question')
+            user_answer = UserAnswer.objects.create(user=user, question=question, answer_id=answer_id)
 
 
 def calculate_score(user, section):

@@ -40,7 +40,7 @@
     <section class="popular-course-area">
         <div class="container-fluid">
             <div class="owl-carousel popuar-course-carusel">
-                {% for course in courses %}
+                {% for course in course_list %}
                     <div class="single-popular-course">
                         <div class="thumb">
                             {% thumbnail course.file 324x182 crop upscale as thumb %}

@@ -9,6 +9,7 @@ dj-database-url
 django-debug-toolbar
 django-filer
 django-crispy-forms
+djangorestframework
 
 #CMS
 #django-cms
