@@ -7,7 +7,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        Student detail
+                        Detalii elev
                     </h1>
                     <p class="mx-auto text-white  mt-20 mb-40">
                     </p>
@@ -18,17 +18,36 @@
     <!-- ================ End banner Area ================= -->
     <section class="sample-text-area">
         <div class="container">
-            <p>{{ student }}</p>
-            <ul>
-                {% for course, entries in scores %}
-                    <li>{{ course }}</li>
-                    <ul style="margin-left: 20px;">
+            <h3 class="mb-30">{{ student }}</h3>
+            <div class="progress-table-wrap">
+                <div class="progress-table">
+                    <div class="table-head">
+                        <div class="serial">#</div>
+                        <div class="country">Lectie</div>
+                        <div class="visit">Materie</div>
+                        <div class="percentage">Procentaj test</div>
+                    </div>
+                    {% for course, entries in scores %}
                         {% for section, score in entries %}
-                            <li>{{ section }}: {{ score }}</li>
+                            <div class="table-row">
+                                <div class="serial">{{ section.number }}</div>
+                                <div class="country">{{ section }}</div>
+                                <div class="visit">{{ course }}</div>
+                                <div class="percentage">
+                                    <div class="progress">
+                                        <div class="progress-bar color-1" role="progressbar"
+                                             style="width: {{ score|floatformat }}%"
+                                             aria-valuenow="{{ score|floatformat }}" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                        {{ score|floatformat }}%
+                                    </div>
+                                </div>
+                            </div>
                         {% endfor %}
-                    </ul>
-                {% endfor %}
-            </ul>
+                    {% endfor %}
+
+                </div>
+            </div>
         </div>
     </section>
 {% endblock %}

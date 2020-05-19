@@ -44,7 +44,7 @@
                     <div class="single-popular-course">
                         <div class="thumb">
                             {% thumbnail course.file 324x182 crop upscale as thumb %}
-                            <a href="course_detail/{{ course.id }}">
+                            <a href="course/{{ course.id }}">
                                 <img class="f-img img-fluid mx-auto" src="{{ thumb.url }}" alt=""/>
                             </a>
                         </div>
@@ -52,16 +52,16 @@
                             <div class="d-flex justify-content-between mb-20">
                                 <p class="name">{{ course.category }}</p>
                                 <p class="value">
-                                    {% if course.price == 0.00 %}
-                                        Gratuit
-                                    {% elif course.price == 1 %}
-                                        {{ course.price }} Leu
-                                    {% else %}
-                                        {{ course.price }} Lei
-                                    {% endif %}
+{#                                    {% if course.price == 0.00 %}#}
+{#                                        Gratuit#}
+{#                                    {% elif course.price == 1 %}#}
+{#                                        {{ course.price }} Leu#}
+{#                                    {% else %}#}
+{#                                        {{ course.price }} Lei#}
+{#                                    {% endif %}#}
                                 </p>
                             </div>
-                            <a href="course_detail/{{ course.id }}">
+                            <a href="course/{{ course.id }}">
                                 <h4>{{ course }}</h4>
                             </a>
                             <div class="bottom d-flex mt-15">

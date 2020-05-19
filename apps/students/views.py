@@ -1,9 +1,14 @@
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from rest_framework import viewsets
+
+from users.forms import CustomUserCreationForm
 
 from courses.models import Course
 from courses.views import calculate_score
-from .models import User
+from users.models import CustomUser
+from .serializers import UserSerializer
+from django.contrib import messages
 
 
 def get_all_scores_for_user(user):
@@ -22,3 +27,9 @@ def student_detail(request):
     student = request.user
     return render(request, 'students/student_detail.html',
                   {'student': student, 'scores': get_all_scores_for_user(student)})
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.order_by('-date_joined')
+    serializer_class = UserSerializer
+

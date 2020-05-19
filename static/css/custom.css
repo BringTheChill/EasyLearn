@@ -32,3 +32,7 @@
     padding: 157px 0px;
     background-size: cover;
 }
+
+.form-control {
+  width: 50%;
+}

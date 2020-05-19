@@ -7,7 +7,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12 banner-right">
                     <h1 class="text-white">
-                        {{ section.number }}.{{ section.title }}
+                        Register
                     </h1>
                     <p class="mx-auto text-white  mt-20 mb-40">
                     </p>
@@ -16,19 +16,12 @@
         </div>
     </section>
     <!-- ================ End banner Area ================= -->
-{#    {% for rightUser in section.course.students.all %}#}
-{#        {% if rightUser == user %}#}
-{#            <p>test</p>#}
-{#        {% else %}#}
-{#            <p>Pare rau {{ user }}</p>#}
-{#        {% endif %}#}
-{#    {% endfor %}#}
     <section class="sample-text-area">
         <div class="container">
-            <video width="1000" controls>
-                <source src="{{ section.video.url }}" type="video/mp4">
-            </video>
-            <a href="{{ section.get_test_url }}" class="genric-btn info circle arrow">Take the test<span class="lnr lnr-arrow-right"></span></a>
+            <h2>Sign up for a free account</h2>
+            <p class="lead">Select below the type of account you want to create</p>
+            <a href="{% url 'student_signup' %}" class="genric-btn primary radius" role="button">I'm a student</a>
+            <a href="{% url 'teacher_signup' %}" class="genric-btn primary radius" role="button">I'm a teacher</a>
         </div>
     </section>
 {% endblock %}

@@ -1,9 +1,18 @@
 from django.contrib import admin
+
+from users.models import CustomUser
 from .models import Course, Category, Answer, Question, Section
 
 
 class CourseAdmin(admin.ModelAdmin):
-    pass
+    filter_horizontal = ['students', 'teachers']
+
+    # def formfield_for_manytomany(self, db_field, request, **kwargs):
+    #     if db_field.name == "students":
+    #         kwargs["queryset"] = CustomUser.objects.filter(is_student=True)
+    #     elif db_field.name == 'teachers':
+    #         kwargs["queryset"] = CustomUser.objects.filter(is_teacher=True)
+    #     return super(CourseAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
 
 class CategoryAdmin(admin.ModelAdmin):

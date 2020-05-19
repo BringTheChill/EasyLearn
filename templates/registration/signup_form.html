@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static thumbnail crispy_forms_tags %}
+{% block main_content %}
+    <!-- ================ start banner Area ================= -->
+    <section class="banner-area">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12 banner-right">
+                    <h1 class="text-white">
+                        Register as a student
+                    </h1>
+                    <p class="mx-auto text-white  mt-20 mb-40">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ End banner Area ================= -->
+    <section class="sample-text-area">
+        <div class="container">
+            <form class="course-form-area contact-page-form course-form" method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Join Today</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                </div>
+            </form>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                </small>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

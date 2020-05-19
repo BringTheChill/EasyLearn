@@ -1,26 +1,37 @@
-from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
 from rest_framework import routers
 
+import courses
+# from courses.views import SectionViewSet
 from . import settings, views
 from students.views import student_detail
-from api.views import UserViewSet
+# from students.views import UserViewSet
+# from students import views as student_views
 
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+from courses.viewss import classroom, students, teachers
+
+
+# router = routers.DefaultRouter()
+# router.register(r'users', UserViewSet)
+# router.register(r'sections', SectionViewSet)
 
 urlpatterns = [
     path('filer/', include('filer.urls')),
     path('admin/', admin.site.urls),
+    # path('register/', student_views.register, name='register'),
     path('', views.index, name='index'),
-    path('', include('django.contrib.auth.urls')),
-    path('api/', include(router.urls)),
+    # path('', include('django.contrib.auth.urls')),
+    # path('api/', include(router.urls)),
     path('courses/', include('courses.urls')),
     path('student_detail/', student_detail, name="student_detail"),
     # path('', include('cms.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', classroom.SignUpView.as_view(), name='signup'),
+    path('accounts/signup/student/', students.StudentSignUpView.as_view(), name='student_signup'),
+    path('accounts/signup/teacher/', teachers.TeacherSignUpView.as_view(), name='teacher_signup'),
 
 ]
 

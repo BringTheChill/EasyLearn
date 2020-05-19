@@ -2,6 +2,7 @@
 python-dotenv
 mysqlclient
 Pillow
+httpie
 
 #Django apps
 Django

@@ -79,10 +79,11 @@
                         <div class="content">
                             <ul class="course-list">
                                 {% for section in course.section_set.all %}
-                                <li class="justify-content-between d-flex">
-                                    <p>{{ section.title }}</p>
-                                    <a class="btn text-uppercase" href="{{ section.get_absolute_url }}">View Details</a>
-                                </li>
+                                    <li class="justify-content-between d-flex">
+                                        <p>{{ section.title }}</p>
+                                        <a class="btn text-uppercase" href="{{ section.get_absolute_url }}">View
+                                            Details</a>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -95,29 +96,22 @@
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>Trainer’s Name</p>
-                                <span class="or">George Mathews</span>
+                                <span class="or">{{ course.teachers.first }}</span>
                             </a>
                         </li>
-                        <li>
-                            <a class="justify-content-between d-flex" href="#">
-                                <p>Course Fee </p>
-                                <span>$230</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="justify-content-between d-flex" href="#">
-                                <p>Available Seats </p>
-                                <span>15</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="justify-content-between d-flex" href="#">
-                                <p>Schedule </p>
-                                <span>2.00 pm to 4.00 pm</span>
-                            </a>
-                        </li>
+{#                        <li>#}
+{#                            <a class="justify-content-between d-flex" href="#">#}
+{#                                <p>Course Fee </p>#}
+{#                                {% if course.price == 0 %}#}
+{#                                    <span>Gratuit</span>#}
+{#                                {% else %}#}
+{#                                    <span>{{ course.price }}</span>#}
+{#                                {% endif %}#}
+{#                            </a>#}
+{#                        </li>#}
                     </ul>
-                    <a href="#" class="btn text-uppercase enroll">Enroll the course</a>
+                    <a href="{% url 'course_enroll' object.pk %}" class="btn text-uppercase enroll">Enroll the
+                        course</a>
 
                     <h4 class="title">Reviews</h4>
                     <div class="content">

@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'students',
+    # 'teachers',
     # 'djangocms_text_ckeditor',
     # 'djangocms_blog',
     # 'djangocms_link',
@@ -108,9 +109,10 @@ INSTALLED_APPS = [
     'mptt',
     'crispy_forms',
     'courses',
+    'users',
 ]
 
-AUTH_USER_MODEL = 'students.User'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -198,6 +200,15 @@ THUMBNAIL_PROCESSORS = (
 )
 THUMBNAIL_DEBUG = DEBUG
 FILER_SUBJECT_LOCATION_IMAGE_DEBUG = True
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
 
 if DEBUG:
     SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
