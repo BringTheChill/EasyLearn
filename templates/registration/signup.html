@@ -18,10 +18,14 @@
     <!-- ================ End banner Area ================= -->
     <section class="sample-text-area">
         <div class="container">
-            <h2>Sign up for a free account</h2>
-            <p class="lead">Select below the type of account you want to create</p>
-            <a href="{% url 'student_signup' %}" class="genric-btn primary radius" role="button">I'm a student</a>
-            <a href="{% url 'teacher_signup' %}" class="genric-btn primary radius" role="button">I'm a teacher</a>
+            {% if request.user.is_authenticated %}
+                <h2>Nu ai nevoie sa te inregistrezi. Esti deja autentificat pe acest cont!</h2>
+            {% else %}
+                <h2>Sign up for a free account</h2>
+                <p class="lead">Select below the type of account you want to create</p>
+                <a href="{% url 'student_signup' %}" class="genric-btn primary radius" role="button">I'm a student</a>
+                <a href="{% url 'teacher_signup' %}" class="genric-btn primary radius" role="button">I'm a teacher</a>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

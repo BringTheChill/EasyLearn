@@ -6,11 +6,15 @@ httpie
 
 #Django apps
 Django
+django-crispy-forms
+django-constance[redis]
 dj-database-url
 django-debug-toolbar
 django-filer
-django-crispy-forms
+django-redis
+django-recaptcha
 djangorestframework
+django-smtp-ssl
 
 #CMS
 #django-cms

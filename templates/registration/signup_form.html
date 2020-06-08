@@ -18,21 +18,25 @@
     <!-- ================ End banner Area ================= -->
     <section class="sample-text-area">
         <div class="container">
-            <form class="course-form-area contact-page-form course-form" method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Join Today</legend>
-                    {{ form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            {% if request.user.is_authenticated %}
+                <h2>Nu ai nevoie sa te inregistrezi. Esti deja autentificat pe acest cont!</h2>
+            {% else %}
+                <form class="course-form-area contact-page-form course-form" method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Join Today</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                    </div>
+                </form>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                    </small>
                 </div>
-            </form>
-            <div class="border-top pt-3">
-                <small class="text-muted">
-                    Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-                </small>
-            </div>
+            {% endif %}
         </div>
     </section>
 

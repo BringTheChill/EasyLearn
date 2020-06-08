@@ -89,6 +89,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'constance',
+    'captcha',
     'students',
     # 'teachers',
     # 'djangocms_text_ckeditor',
@@ -111,6 +113,45 @@ INSTALLED_APPS = [
     'courses',
     'users',
 ]
+
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
+
+CACHE_URL = os.environ.get('CACHE_URL', "redis://localhost:6379/0")
+CACHE_BACKEND = "django_redis.cache.RedisCache"
+CACHE_PREFIX = 'easylearn'
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
+CONSTANCE_REDIS_CONNECTION = os.environ.get('CONSTANCE_REDIS_CONNECTION', CACHE_URL)
+CONSTANCE_REDIS_PREFIX = 'constance:{}:'.format(CACHE_PREFIX)
+
+CONSTANCE_CONFIG = {
+    'ADRESA': ('Str.General Magheru, nr.33', 'Adresa de contact'),
+    'TELEFON': ('0757657863', 'Telefon de contact'),
+    'EMAIL': ('contact@easylearn.ro', 'Email de contact'),
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'your_email@example.com')
+EMAIL_PORT = os.environ.get('EMAIL_PORT', 465)
+EMAIL_SUBJECT_PREFIX = '[%s] ' % 'EASYLEARN'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = not EMAIL_USE_TLS
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SECURITY_EMAIL_SENDER = 'vflorinrobert@gmail.com'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -144,6 +185,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'constance.context_processors.config',
                 "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.debug",
                 "django.template.context_processors.i18n",
@@ -201,14 +243,12 @@ THUMBNAIL_PROCESSORS = (
 THUMBNAIL_DEBUG = DEBUG
 FILER_SUBJECT_LOCATION_IMAGE_DEBUG = True
 
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     )
 }
-
 
 if DEBUG:
     SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

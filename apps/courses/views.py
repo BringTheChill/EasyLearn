@@ -131,7 +131,7 @@ class SectionViewSet(viewsets.ModelViewSet):
 
 def course_enroll(request, pk):
     course = Course.objects.get(pk=pk)
-    if request.user in course.students.all() or request.user in course.teachers.all():
+    if request.user in course.students.all() or request.user is course.teachers:
         message = "Sunteti deja inscris la curs!"
     else:
         course.students.add(request.user)

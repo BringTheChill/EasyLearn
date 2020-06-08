@@ -29,52 +29,6 @@
                         <img class="img-fluid" src="{{ course.file.url }}" alt="">
                     </div>
                     <div class="content-wrapper">
-                        <h4 class="title">Objectives</h4>
-                        <div class="content">
-                            When you enter into any new area of science, you almost always find yourself with a
-                            baffling new language of
-                            technical terms to learn before you can converse with the experts. This is certainly
-                            true in astronomy both in
-                            terms of terms that refer to the cosmos and terms that describe the tools of the trade,
-                            the most prevalent
-                            being the telescope.
-                            <br>
-                            <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea
-                            commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum.
-                        </div>
-
-                        <h4 class="title">Eligibility</h4>
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                            <br>
-                            <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea
-                            commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum.
-                        </div>
-
                         <h4 class="title">Course Outline</h4>
                         <div class="content">
                             <ul class="course-list">
@@ -96,23 +50,24 @@
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>Trainer’s Name</p>
-                                <span class="or">{{ course.teachers.first }}</span>
+                                <span class="or">{{ course.teachers.get_full_name }}</span>
                             </a>
                         </li>
-{#                        <li>#}
-{#                            <a class="justify-content-between d-flex" href="#">#}
-{#                                <p>Course Fee </p>#}
-{#                                {% if course.price == 0 %}#}
-{#                                    <span>Gratuit</span>#}
-{#                                {% else %}#}
-{#                                    <span>{{ course.price }}</span>#}
-{#                                {% endif %}#}
-{#                            </a>#}
-{#                        </li>#}
+                        {#                        <li>#}
+                        {#                            <a class="justify-content-between d-flex" href="#">#}
+                        {#                                <p>Course Fee </p>#}
+                        {#                                {% if course.price == 0 %}#}
+                        {#                                    <span>Gratuit</span>#}
+                        {#                                {% else %}#}
+                        {#                                    <span>{{ course.price }}</span>#}
+                        {#                                {% endif %}#}
+                        {#                            </a>#}
+                        {#                        </li>#}
                     </ul>
-                    <a href="{% url 'course_enroll' object.pk %}" class="btn text-uppercase enroll">Enroll the
-                        course</a>
-
+                    {% if user.is_teacher is False %}
+                        <a href="{% url 'course_enroll' object.pk %}" class="btn text-uppercase enroll">Enroll the
+                            course</a>
+                    {% endif %}
                     <h4 class="title">Reviews</h4>
                     <div class="content">
                         <div class="review-top row pt-40">

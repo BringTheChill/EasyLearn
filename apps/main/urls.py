@@ -25,6 +25,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     # path('', include('django.contrib.auth.urls')),
     # path('api/', include(router.urls)),
+    path('contact/', include('contact.urls')),
     path('courses/', include('courses.urls')),
     path('student_detail/', student_detail, name="student_detail"),
     # path('', include('cms.urls')),
@@ -34,6 +35,10 @@ urlpatterns = [
     path('accounts/signup/teacher/', teachers.TeacherSignUpView.as_view(), name='teacher_signup'),
 
 ]
+
+admin.site.site_header = "EasyLearn Dashboard"
+admin.site.site_title = "EasyLearn"
+admin.site.index_title = "Welcome to EasyLearn"
 
 if settings.DEBUG:
     import debug_toolbar
