@@ -1,4 +1,4 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect
 from django.views.generic import CreateView
 
@@ -18,5 +18,6 @@ class StudentSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
+        new_user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password1'])
+        login(self.request, new_user)
         return redirect('index')

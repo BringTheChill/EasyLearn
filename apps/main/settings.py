@@ -91,6 +91,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'constance',
     'captcha',
+    'watson',
+    'star_ratings',
     'students',
     # 'teachers',
     # 'djangocms_text_ckeditor',
@@ -113,6 +115,8 @@ INSTALLED_APPS = [
     'courses',
     'users',
 ]
+
+# STAR_RATINGS_STAR_HEIGHT = 20
 
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
@@ -167,6 +171,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'watson.middleware.SearchContextMiddleware',
     # 'cms.middleware.user.CurrentUserMiddleware',
     # 'cms.middleware.page.CurrentPageMiddleware',
     # 'cms.middleware.toolbar.ToolbarMiddleware',

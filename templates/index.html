@@ -1,4 +1,4 @@
-{% load static thumbnail %} <!--menu_tags cms_tags sekizai_tags-->
+{% load static thumbnail watson %} <!--menu_tags cms_tags sekizai_tags-->
 <!DOCTYPE html>
 <html lang="ro" class="no-js">
 
@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="{% static 'css/dropzone.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
+    {# Star-ratings #}
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
     {#    {% render_block "css" %}#}
 </head>
 
@@ -53,12 +55,13 @@
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="lnr lnr-menu"></span>
                 </button>
-
+                {% if request.user.is_teacher %}
+                    <a href="/admin" class="genric-btn default circle">Dashboard</a>
+                {% endif %}
                 <div class="collapse navbar-collapse justify-content-end align-items-center"
                      id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         {#                                    {% show_menu 0 100 100 100 "main/top_menu.html" %}#}
-
                         <li><a href="/">Home</a></li>
                         <li><a href="/courses">Courses</a></li>
                         <li><a href="/contact">Contact</a></li>
@@ -92,8 +95,9 @@
         </nav>
         <div class="search-input" id="search-input-box">
             <div class="container">
-                <form class="d-flex justify-content-between">
-                    <input type="text" class="form-control" id="search-input" placeholder="Search Here"/>
+                <form class="d-flex justify-content-between" action="{% url 'watson:search' %}">
+                    {% csrf_token %}
+                    <input name="q" value="{{request.GET.q}}" type="text" class="form-control" id="search-input" placeholder="Search Here" />
                     <button type="submit" class="btn"></button>
                     <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
                 </form>
@@ -352,6 +356,7 @@
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/jquery.matchHeight.js' %}"></script>
 <script src="{% static 'js/dropzone.js' %}"></script>
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 <script>
     $(document).on('ready', function () {
         $('.matchHeight').matchHeight();

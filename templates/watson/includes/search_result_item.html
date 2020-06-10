@@ -1,0 +1,24 @@
+{% load thumbnail ratings %}
+<article>
+    <div class="single-popular-course">
+        <div class="thumb">
+            {% thumbnail result.object.file 324x182 crop upscale as thumb %}
+            <a href="{{ result.url }}">
+                <img class="f-img img-fluid mx-auto" src="{{ thumb.url }}" alt=""/>
+            </a>
+        </div>
+        <div class="details matchHeight">
+            <div class="d-flex justify-content-between mb-20">
+                <p class="name">{{ result.object.category }}</p>
+                <p class="value">
+                </p>
+            </div>
+            <a href="{{ result.url }}">
+                <h4>{{ result.title }}</h4>
+            </a>
+            <div class="bottom d-flex mt-15">
+                {% ratings result.object 20 20 True %}
+            </div>
+        </div>
+    </div>
+</article>

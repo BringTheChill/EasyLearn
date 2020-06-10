@@ -13,7 +13,8 @@ from django.contrib import messages
 
 def get_all_scores_for_user(user):
     scores = []
-    for course in Course.objects.all():
+    # parcurgem doar cursurile in care studentul este inscris
+    for course in Course.objects.filter(students=user):
         course_scores = []
         for section in course.section_set.order_by('number'):
             course_scores.append((section, calculate_score(user, section),))
@@ -21,15 +22,31 @@ def get_all_scores_for_user(user):
     return scores
 
 
+def get_all_scores_for_teacher(teacher):
+    scores = []
+    # parcurgem doar cursurile in care studentul este inscris
+    for course in Course.objects.filter(teachers=teacher):
+        course_scores = []
+        for section in course.section_set.order_by('number'):
+            for student in course.students.all():
+                course_scores.append((student, section, calculate_score(student, section),))
+        scores.append((course, course_scores), )
+    return scores
+
+
 def student_detail(request):
     if not request.user.is_authenticated:
         raise PermissionDenied
-    student = request.user
-    return render(request, 'students/student_detail.html',
-                  {'student': student, 'scores': get_all_scores_for_user(student)})
+    if request.user.is_student is True:
+        student = request.user
+        return render(request, 'students/student_detail.html',
+                      {'student': student, 'scores': get_all_scores_for_user(student)})
+    if request.user.is_teacher is True:
+        teacher = request.user
+        return render(request, 'teachers/teacher_detail.html',
+                      {'teacher': teacher, 'scores': get_all_scores_for_teacher(teacher)})
 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.order_by('-date_joined')
     serializer_class = UserSerializer
-

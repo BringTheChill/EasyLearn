@@ -53,7 +53,7 @@ course_detail = CourseDetailView.as_view()
 
 def do_section(request, section_id):
     section = Section.objects.get(id=section_id)
-    if request.user in section.course.students.all() or request.user in section.course.teachers.all():
+    if request.user in section.course.students.all() or request.user is section.course.teachers:
         return render(request, 'courses/do_section.html', {'section': section})
     raise PermissionDenied
 

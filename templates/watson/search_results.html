@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% load static thumbnail watson %}
+{% block main_content %}
+    <!-- ================ start banner Area ================= -->
+    <section class="banner-area">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12 banner-right">
+                    <h1 class="text-white">
+                        Courses
+                    </h1>
+                    <p class="mx-auto text-white  mt-20 mb-40">
+                        Your place to learn some stuff! <br>
+                    </p>
+                    <div class="link-nav">
+              <span class="box">
+                <a href="/">Home </a>
+                <i class="lnr lnr-arrow-right"></i>
+                <a href="/courses">Courses</a>
+              </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center container-fluid">
+                <div class="col-lg-12">
+                    <h2>
+                        Search results{% if query %} for &ldquo;{{ query }}&rdquo;{% endif %}
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ End banner Area ================= -->
+
+    <!-- ================ Start Popular Course Area ================= -->
+    <section class="popular-course-area">
+        <div class="container-fluid">
+            <div class="owl-carousel popuar-course-carusel">
+                {% if search_results %}
+                    {% search_results search_results %}
+                {% else %}
+                    {% if query %}
+                        <p><em>There are no results to display.</em></p>
+                        <p><em>Try entering a less specific search term.</em></p>
+                    {% else %}
+                        <p><em>Please enter a query in the search form.</em></p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- ================ End Popular Course Area ================= -->
+
+{% endblock %}
