@@ -82,6 +82,7 @@ ALLOWED_HOSTS = ['localhost']
 INSTALLED_APPS = [
     # 'djangocms_admin_style',
     'django.contrib.sites',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

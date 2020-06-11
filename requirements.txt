@@ -12,6 +12,7 @@ django-braces==1.14.0     # via django-star-ratings
 django-constance[redis]==2.6.0  # via -r requirements.in
 django-crispy-forms==1.9.1  # via -r requirements.in
 django-debug-toolbar==2.2  # via -r requirements.in
+django-extensions==2.2.9  # via -r requirements.in
 django-filer==1.7.1       # via -r requirements.in
 django-js-asset==1.2.2    # via django-mptt
 django-model-utils==4.0.0  # via django-star-ratings
@@ -29,12 +30,14 @@ httpie==2.1.0             # via -r requirements.in
 idna==2.9                 # via requests
 mysqlclient==1.4.6        # via -r requirements.in
 pillow==7.1.2             # via -r requirements.in, easy-thumbnails
+pydotplus==2.0.2          # via -r requirements.in
 pygments==2.6.1           # via httpie
+pyparsing==2.4.7          # via pydotplus
 python-dotenv==0.13.0     # via -r requirements.in
 pytz==2020.1              # via django
 redis==3.5.3              # via django-constance, django-redis
 requests==2.23.0          # via httpie
-six==1.15.0               # via django-braces, django-filer
+six==1.15.0               # via django-braces, django-extensions, django-filer
 sqlparse==0.3.1           # via django, django-debug-toolbar
 swapper==1.1.2.post1      # via django-star-ratings
 unidecode==1.1.1          # via django-filer
