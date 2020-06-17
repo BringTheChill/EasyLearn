@@ -21,15 +21,6 @@ class TeacherSignUpView(CreateView):
 
     def form_valid(self, form):
         form.instance.is_staff = True
-        # user = form.save(self)
-        # response = super(TeacherSignUpView).form_valid(form)
-        # response = super().form_valid(form)
-        # self.object.groups.add(teacher_group)
-        # form.instance.groups.add(teacher_group)
-        # user_auth = authenticate(username=user.email, password=form.cleaned_data['password1'])
-        # login(self.request, user)
-        # return response
-        # return redirect('index')
         user = form.save()
         teacher_group = Group.objects.get(name='Teacher')
         form.instance.groups.add(teacher_group)

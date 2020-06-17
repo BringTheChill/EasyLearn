@@ -2,31 +2,18 @@ from django.db import models
 from django.urls import reverse
 
 from main import settings
-# from students.models import StudentUser
-# from teachers.models import TeacherUser
 
 from django.contrib.auth.models import AbstractUser, PermissionsMixin, AbstractBaseUser
 from users.models import CustomUser
 
 
-# Start Trying something new
-
-
-# class User(AbstractBaseUser, PermissionsMixin):
-#     is_student = models.BooleanField(default=False)
-#     is_teacher = models.BooleanField(default=False)
-
-
 class Student(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True, related_name="students")
 
-    # quizzes = models.ManyToManyField(Quiz, through='TakenQuiz')
-    # interests = models.ManyToManyField(Subject, related_name='interested_students')
     def __str__(self):
         return self.user.get_full_name()
 
 
-# End
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
@@ -46,8 +33,7 @@ class Course(models.Model):
 
     students = models.ManyToManyField(CustomUser, related_name='students_to_courses',
                                       limit_choices_to={'is_student': True}, blank=True)
-    # teachers = models.ManyToManyField(CustomUser, related_name='teachers_to_courses',
-    #                                   limit_choices_to={'is_teacher': True},)
+
     teachers = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='teachers_to_courses', null=True, blank=True,
                                  limit_choices_to={'is_teacher': True}, on_delete=models.SET_NULL)
 
