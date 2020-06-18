@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied, SuspiciousOperation
 from django.urls import reverse
 from django.db import transaction
-from django.views.generic import DetailView, CreateView, ListView
+from django.views.generic import DetailView, ListView
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -35,15 +35,6 @@ def course_add(request):
     return render(request, 'courses/course_form.html', {'form': form})
 
 
-#
-# class CourseAddView(CreateView):
-#     model = Course
-#     fields = '__all__'
-#
-#
-# course_add = CourseAddView.as_view()
-
-
 class CourseDetailView(DetailView):
     model = Course
 
@@ -56,14 +47,6 @@ def do_section(request, section_id):
     if request.user in section.course.students.all() or request.user is section.course.teachers:
         return render(request, 'courses/do_section.html', {'section': section})
     raise PermissionDenied
-
-
-#
-# def do_section(request):
-#     if not request.user.is_authenticated:
-#         raise PermissionDenied
-#     section = request.user
-#     return render(request, 'courses/do_section.html', {'section': section})
 
 
 def do_test(request, section_id):
