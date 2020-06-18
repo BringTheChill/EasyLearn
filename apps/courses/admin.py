@@ -34,6 +34,12 @@ class SectionAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(course__teachers__in=[request.user])
 
+    # Pentru a afisa in admin doar cursurile din cursurile profesorului
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.related_model:
+            kwargs["queryset"] = db_field.related_model.objects.filter(section__course__teachers__in=[request.user])
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
 
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ['__str__', 'section']
