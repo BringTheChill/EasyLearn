@@ -97,7 +97,8 @@
             <div class="container">
                 <form class="d-flex justify-content-between" action="{% url 'watson:search' %}">
                     {% csrf_token %}
-                    <input name="q" value="{{request.GET.q}}" type="text" class="form-control" id="search-input" placeholder="Search Here" />
+                    <input name="q" value="{{ request.GET.q }}" type="text" class="form-control" id="search-input"
+                           placeholder="Search Here"/>
                     <button type="submit" class="btn"></button>
                     <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
                 </form>
@@ -244,7 +245,9 @@
                             </h3>
                             <p class="text-white">Te aşteptăm şi pe tine la curusile noastre</p>
                             <div class="col-lg-12 text-center">
-                                <button class="btn text-uppercase">Register</button>
+                                <a href="{% url 'signup' %}">
+                                    <button class="btn text-uppercase">Register</button>
+                                </a>
                             </div>
                         </div>
                     </div>

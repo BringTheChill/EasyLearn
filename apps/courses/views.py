@@ -67,9 +67,9 @@ def do_section(request, section_id):
 
 
 def do_test(request, section_id):
-    if not request.user.is_authenticated:
-        raise PermissionDenied
     section = Section.objects.get(id=section_id)
+    if not request.user.is_authenticated or request.user not in section.course.students.all():
+        raise PermissionDenied
     if request.method == 'POST':
         data = {}
         for key, value in request.POST.items():
