@@ -143,7 +143,7 @@ CONSTANCE_REDIS_PREFIX = 'constance:{}:'.format(CACHE_PREFIX)
 CONSTANCE_CONFIG = {
     'ADRESA': ('Str.General Magheru, nr.33', 'Adresa de contact'),
     'TELEFON': ('0757657863', 'Telefon de contact'),
-    'EMAIL': ('contact@easylearn.ro', 'Email de contact'),
+    'EMAIL': ('vflorinrobert@easylearn.ro', 'Email de contact'),
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -152,7 +152,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'your_email@example.com')
 EMAIL_PORT = os.environ.get('EMAIL_PORT', 465)
 EMAIL_SUBJECT_PREFIX = '[%s] ' % 'EASYLEARN'
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 EMAIL_USE_SSL = not EMAIL_USE_TLS
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
